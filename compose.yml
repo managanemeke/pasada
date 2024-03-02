@@ -3,8 +3,10 @@ version: '3.9'
 
 services:
 
-  db:
+  pasada:
     image: postgres
+    container_name: pasada
+    hostname: pasada
     restart: always
     # set shared memory limit when using docker-compose
     shm_size: 128mb
@@ -16,9 +18,11 @@ services:
     #      size: 134217728 # 128*2^20 bytes = 128Mb
     environment:
       POSTGRES_PASSWORD: example
+    ports:
+      - "2345:5432"
 
   adminer:
     image: adminer
     restart: always
     ports:
-      - 8080:8080
+      - "8080:8080"
