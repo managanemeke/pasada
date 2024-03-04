@@ -16,11 +16,9 @@ services:
     #    target: /dev/shm
     #    tmpfs:
     #      size: 134217728 # 128*2^20 bytes = 128Mb
+    env_file:
+      - default.env
     volumes:
-      - db-data:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: pasada
-      POSTGRES_PASSWORD: dasapa
-      POSTGRES_DB: dapasa
+      - ./db-data:/var/lib/postgresql/data
     ports:
       - "2345:5432"
