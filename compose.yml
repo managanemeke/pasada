@@ -1,13 +1,17 @@
-# Use postgres/example user/password credentials
+# pasada
 version: '3.9'
 
 services:
 
   pasada:
+
     image: postgres:16.2-alpine3.18
+    restart: always
+
     container_name: pasada
     hostname: pasada
-    restart: always
+
+
     # set shared memory limit when using docker-compose
     shm_size: 128mb
     # or set shared memory limit when deploy via swarm stack
@@ -16,9 +20,12 @@ services:
     #    target: /dev/shm
     #    tmpfs:
     #      size: 134217728 # 128*2^20 bytes = 128Mb
+
     env_file:
       - default.env
+
     volumes:
       - ./db-data:/var/lib/postgresql/data
+
     ports:
       - "2345:5432"
